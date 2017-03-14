@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html>    
+	<header>            
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
+        <link rel="stylesheet" 
+        		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+        		crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+        		crossorigin="anonymous"></script>
+  		<script>
+			function submitForm() {
+				var clientName = document.getElementById('clientName').value;
+				var clientAddress = document.getElementById('clientAddress').value;
+				var clientFines = document.getElementById('clientFines').value;
+
+				if(!!clientName.length && !!clientAddress.length && !!clientFines) {
+					var url = 'http://127.0.0.1:8080/api/client';
+					var data = { clientName, clientAddress, clientFines };
+					$.post(url, data, registerClient);
+				} else {
+					$("#error").css({opacity: 1, display: 'block'}).animate({opacity: 0}, 5000).hide('slow');
+				}
+
+			}
+
+			function registerClient(data) {
+				$("#success").css({opacity: 1, display: 'block'}).animate({opacity: 0}, 5000).hide('slow');
+			}
+
+			function resetForm() {
+
+			}
+
+
+
+        </script>      
+    </header>      
+    <body style="padding:0 20px;">  
+    	<h2 id="interest"> SYDE 322 Assignment 3 </h2>
+    	<ul class="nav nav-tabs">
+		  <li role="presentation"><a href="/">Home</a></li>
+		  <li role="presentation" class="active"><a href="/register">Register</a></li>
+		</ul>
+    	<br>
+    	<div id="view" class="col-md-offset-3 col-md-6">
+    		<h4>Insert Client Details:</h4>
+    		<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Name</span>
+				<input id="clientName" type="text" class="form-control" 
+						placeholder="Enter client name..." aria-describedby="basic-addon1">
+			</div> <br>
+			<div class="input-group">
+ 				<span class="input-group-addon" id="basic-addon2">Address</span>
+				<input id="clientAddress" type="text" class="form-control" 
+						placeholder="Enter client address..." aria-describedby="basic-addon2">
+			</div> <br>
+			<div class="input-group">
+ 				<span class="input-group-addon" id="basic-addon2">Outstanding Fines $ </span>
+				<input id="clientFines" type="number" min="0" class="form-control" 
+						placeholder="Enter client outstanding fines..."  aria-describedby="basic-addon2">
+				<span class="input-group-addon">.00</span>
+			</div>
+			<br>
+			<div class="clearfix">
+				<button onclick="submitForm()" type="button" class="btn btn-primary pull-right">Submit</button>
+				<button onclick="resetForm()" type="button" class="btn btn-link pull-right">Reset</button>
+			</div>
+			<br>
+			<div id="error" style="opacity:0; display: none;" class="alert alert-danger" role="alert">An error has occured!</div>
+			<div id="success" style="opacity:0; display: none;" class="alert alert-success" role="alert">Client successfully added!</div>
+    	</div>
+    </body>  
+</html>
