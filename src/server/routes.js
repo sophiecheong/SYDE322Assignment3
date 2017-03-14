@@ -12,8 +12,8 @@ router.get('/', function (req, res) {
 	res.sendFile(path.join(__dirname + '/../public/index.html'));
 });
 
-router.get('/home', function (req, res) {
-	res.render(path.join(__dirname + '/../public/home.html'));
+router.get('/drones', function (req, res) {
+	res.render(path.join(__dirname + '/../public/drones.html'));
 });
 
 router.get('/register', function (req, res) {

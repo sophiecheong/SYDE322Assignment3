@@ -1,19 +1,23 @@
 =====================================================================
 					Exercise 1 - Client Registration
 =====================================================================
+PreTest Case:
+	1. User clicks on Register tab
+	2. All fields are blank
+	3. No alert messages are present
+
+	Screenshot: exercise1-pretestcase.jpeg
 
 Test Case 1:
-	1. User clicks on Regster tab
-	2. User fills in all fields (client name, client address, client outstanding fines)
-	3. User clicks submit
+	1. User fills in all fields (client name, client address, client outstanding fines)
+	2. User clicks submit
 
 	Output: Success message shows in UI and the client is successfully saved into the db.
 	Screenshot: exercise1-case1ui.jpeg, exercise1-case1db.jpeg
 
 Test Case 2:
-	1. User clicks on Register tab
-	2. User leaves some or all fields blank
-	3. User clicks submit
+	1. User leaves some or all fields blank
+	2. User clicks submit
 
 	Output: Error message shows in UI and no changes are made to the db.
 	Screenshot: exercise1-case2ui.jpeg, exercise1-case2db.jpeg

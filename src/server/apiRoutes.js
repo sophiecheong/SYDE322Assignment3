@@ -13,10 +13,6 @@ const mysqlConnection = require('./sqlConnection');
 // 	res.sendFile(path.join(__dirname + '/../public/index.html'));
 // });
 
-router.get('/home', function (req, res) {
-	res.render(path.join(__dirname + '/../public/home.html'));
-});
-
 router.post('/client', function (req, res) {
 	const query = 'INSERT INTO Client (clientName, clientAddress, finesOutstanding) VALUES (?, ?, ?)';
 	const values = [ req.body.clientName, req.body.clientAddress, req.body.clientFines ];	
