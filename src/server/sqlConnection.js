@@ -8,29 +8,16 @@ const config = {
 };
 
 const mysqlConnection = {
-    runQuery: function(queryStr) {
+    runQuery: function(queryStr, cb) {
         const connection = mysql.createConnection(config);  // connect to your database
         connection.connect();
-        connection.query(queryStr, function (error, results) {
-            if (!!error) { 
-                console.log("query error: ", error);    //Show error in terminal
-                return error;
-            }
-            return results;    // send results as a response
-        });
+        connection.query(queryStr, cb); //cb = callback function
     },
-    insertQuery: function(queryStr, values) {
+    insertQuery: function(queryStr, values, cb) {
         var response;
         const connection = mysql.createConnection(config);  // connect to database
         connection.connect();
-        connection.query(queryStr, values, function (error, results) {
-            if (!!error) { 
-                console.log("query error: ", error);    //Show error in terminal
-                response = error;
-            }
-            response = 'success';    // send success as a response
-        });
-        return response;
+        connection.query(queryStr, values, cb); //cb = callback function
     }
 };
 
