@@ -1,0 +1,114 @@
+<!DOCTYPE html> 
+<html>    
+	<header>            
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
+        <link rel="stylesheet" 
+        		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+        		crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+        		crossorigin="anonymous"></script>
+  		<script>
+			$(function(){
+				$("#header").load("partial/header");
+			});
+
+            function getDrones(search) {
+            	const url = 'http://127.0.0.1:8080/api/drones';
+            	$.get(url, search, populateTable);
+            }
+            
+			function searchDrones() {
+				var optionValues = {
+					startDate: $('#startDate').val(),
+					endDate: $('#endDate').val(),
+					droneType: $('#droneType').val(),
+					manufacturer: $('#manufacturer').val(),
+					range: $('#droneRange').val()
+				};
+
+				if(!!optionValues.startDate && !!optionValues.endDate 
+					&& optionValues.startDate > optionValues.endDate) {
+					$("#error").css({opacity: 1, display: 'block'}).animate({opacity: 0}, 7000).hide('slow');
+					return;
+				} 
+
+				Object.keys(optionValues).forEach((key) => (!optionValues[key]) && delete optionValues[key]);
+				getDrones(optionValues);
+			}
+
+			function populateTable(results) {
+				if(!results.data.length) {
+					$('#availableDrones').html('');
+					return $("#noData").css({opacity: 1, display: 'block'}).animate({opacity: 0}, 7000).hide('slow');
+				}
+
+				const headers = ['droneID', 'droneType', 'manufacturer', 'batteryType', 'range', 'description', 'available'];
+				var tableHTML = '<table class="table table-striped"><thead><tr>';
+				headers.forEach((key) => tableHTML += "<td style='text-transform:capitalize'><b>" + key + "</b></td>" );
+				tableHTML += "</tr></thead><tbody>";
+				for(var row in results.data) {
+					tableHTML += "<tr>";
+					headers.forEach((key) => tableHTML += "<td>" + results.data[row][key] + "</td>" );
+					tableHTML += "</tr>";
+				}
+				tableHTML += "</table>";
+				$('#availableDrones').html(tableHTML);
+			}
+        </script>      
+    </header>      
+    <body style="padding:0 20px;">  
+    	<div id="header"></div>
+    	<div id="view" class="col-md-offset-3 col-md-6">
+    		<h4>Search Available Drones:</h4>
+    		<div class="clearfix">
+	    		<div class="input-group pull-left" style="width: 49%;">
+					<span class="input-group-addon" id="basic-addon1">Date to be Taken</span>
+					<input id="startDate" type="date" class="form-control" aria-describedby="basic-addon1">
+				</div> 
+				<div class="input-group pull-right" style="width: 48%;">
+	 				<span class="input-group-addon" id="basic-addon2">Due Date</span>
+					<input id="endDate" type="date" class="form-control" aria-describedby="basic-addon2">
+				</div>
+				<div class="input-group pull-left" style="width: 30%; margin-top: 5px;">
+	 				<span class="input-group-addon" id="basic-addon3">Drone Type</span>
+					<select id="droneType" class="form-control" aria-describedby="basic-addon3">
+						<option value="">Any</option>
+						<option>RPS</option>
+						<option>RPV</option>
+						<option>UAS</option>
+						<option>UAV</option>
+					</select>
+				</div>
+				<div class="input-group pull-left" style="width: 43%; margin: 5px 1% 0;">
+	 				<span class="input-group-addon" id="basic-addon4">Manufacturer</span>
+					<select id="manufacturer" class="form-control" aria-describedby="basic-addon4">
+						<option value="">Any</option>
+						<option>Airware</option>
+						<option>Dajiang Innovation</option>
+						<option>GoPro</option>
+						<option>Parrot EPA</option>
+					</select>
+				</div>
+				<div class="input-group pull-right" style="width: 25%; margin-top: 5px;">
+	 				<span class="input-group-addon" id="basic-addon5">Range</span>
+					<select id="droneRange" class="form-control" aria-describedby="basic-addon5">
+						<option value="">Any</option>
+						<option>Long</option>
+						<option>Short</option>
+					</select>
+				</div>
+			</div>
+			<br>
+			<div class="clearfix">
+				<button onclick="searchDrones()" type="button" class="btn btn-primary pull-right">Search</button>
+			</div>
+			<br>
+			<div id="error" style="opacity:0; display: none;" class="alert alert-danger" role="alert">Date to be taken cannot be later than due date!</div>
+			<div id="noData" style="opacity:0; display: none;" class="alert alert-danger" role="alert">There are no data to be displayed!</div>
+			<div id="availableDrones"></div>
+    	</div>
+    </body>  
+</html>

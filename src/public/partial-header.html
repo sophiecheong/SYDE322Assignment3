@@ -1,0 +1,16 @@
+<script>
+	$(function(){
+		var path = $(location).attr('pathname').substr(1); 
+		if(!path.length) 
+			path = 'home';
+		$("#" + path).addClass('active');
+    });
+</script>
+
+<h2 id="interest"> SYDE 322 Assignment 3 </h2>
+<ul class="nav nav-tabs">
+  <li role="presentation" id="home" ><a href="/">Home</a></li>
+  <li role="presentation" id="register"><a href="/register">Register</a></li>
+  <li role="presentation" id="drones"><a href="/drones">Drones</a></li>
+</ul>
+<br>

@@ -11,6 +11,10 @@
         		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
         		crossorigin="anonymous"></script>
   		<script>
+  			$(function(){
+              $("#header").load("partial/header"); 
+            });
+            
 			function submitForm() {
 				var clientName = document.getElementById('clientName').value;
 				var clientAddress = document.getElementById('clientAddress').value;
@@ -28,6 +32,7 @@
 
 			function registerClient(data) {
 				$("#success").css({opacity: 1, display: 'block'}).animate({opacity: 0}, 5000).hide('slow');
+				resetForm();
 			}
 
 			function resetForm() {
@@ -38,13 +43,7 @@
         </script>      
     </header>      
     <body style="padding:0 20px;">  
-    	<h2 id="interest"> SYDE 322 Assignment 3 </h2>
-    	<ul class="nav nav-tabs">
-		  <li role="presentation"><a href="/">Home</a></li>
-		  <li role="presentation" class="active"><a href="/register">Register</a></li>
-          <li role="presentation"><a href="/drones">Drones</a></li>
-		</ul>
-    	<br>
+    	<div id="header"></div>
     	<div id="view" class="col-md-offset-3 col-md-6">
     		<h4>Insert Client Details:</h4>
     		<div class="input-group">

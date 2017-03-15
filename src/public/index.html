@@ -11,17 +11,13 @@
         		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
         		crossorigin="anonymous"></script>
   		<script>
-			
+            $(function(){
+              $("#header").load("partial/header"); 
+            });
         </script>      
     </header>      
     <body style="padding:0 20px;">  
-    	<h2 id="interest"> SYDE 322 Assignment 3 </h2>
-    	<ul class="nav nav-tabs">
-		  <li role="presentation" class="active"><a href="/">Home</a></li>
-          <li role="presentation"><a href="/register">Register</a></li>
-          <li role="presentation"><a href="/drones">Drones</a></li>
-		</ul>
-    	<br><br>
+        <div id="header"></div>
     	<div id="view">
     		Please click on the tabs above to navigate through the application.
     	</div>
