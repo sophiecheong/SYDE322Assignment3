@@ -29,7 +29,7 @@ Test Case 3:
 	2. User clicks search
 
 	Output: An error message will pop up. No data will be retrieved from the database
-	Screenshot: exercise2-case3ui.jpeg, exercise2-case3db.jpeg
+	Screenshot: exercise2-case3ui.jpeg
 
 Test Case 4:
 	1. User changes the value in any of the dropdown input (droneType, manufacturer, range)
