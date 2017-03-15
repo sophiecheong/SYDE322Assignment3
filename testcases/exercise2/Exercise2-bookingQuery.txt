@@ -1,0 +1,40 @@
+=====================================================================
+					Exercise 2 - Booking Query
+=====================================================================
+PreTest Case:
+	1. User clicks on Drone tab
+	2. Date fields are blank and dropDowns are set to "Any" by default
+	3. No alert messages are present
+	4. No tables are present
+
+	Screenshot: exercise2-pretestcase.jpeg
+
+Test Case 1:
+	1. User leaves all inputs untouched and clicks search
+
+	Output: Table of all available drones will be returned from the db and displayed in the UI
+			All types of values 
+	Screenshot: exercise2-case1ui.jpeg, exercise2-case1db.jpeg
+
+Test Case 2:
+	1. User fills in either start date or end date (only one date input)
+	2. User clicks search
+
+	Output: Table of all available drones with (endStart < selectedStartDate) or (startDate > selectedEndDate)
+			from MaintenanceRecord and Booking tables will be returned from the db and displayed in the UI
+	Screenshot: exercise2-case2ui.jpeg, exercise2-case2db.jpeg
+
+Test Case 3:
+	1. User fills in date inputs where startDate is after endDate
+	2. User clicks search
+
+	Output: An error message will pop up. No data will be retrieved from the database
+	Screenshot: exercise2-case3ui.jpeg, exercise2-case3db.jpeg
+
+Test Case 4:
+	1. User changes the value in any of the dropdown input (droneType, manufacturer, range)
+	2. User clicks search
+
+	Output: The value of that property will be matched against the entries in the db. 
+			Entries that matches those values will be returned from the db
+	Screenshot: exercise2-case4ui.jpeg, exercise2-case4db.jpeg
