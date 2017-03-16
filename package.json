@@ -16,7 +16,7 @@
   "homepage": "https://github.com/sophiecheong/SYDE322Assignment3",
   "dependencies": {
     "express": "~4.15.2",
-    "mssql": "4.0.0-alpha2",
+    "mysql": "4.6.0",
     "body-parser": "^1.8.1"
   }
 }
